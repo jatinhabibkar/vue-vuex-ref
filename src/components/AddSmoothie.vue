@@ -84,6 +84,5 @@ margin: 20px auto;
 }
 .add-smoothie .field{
     margin: 20px auto;
-
 }
 </style>

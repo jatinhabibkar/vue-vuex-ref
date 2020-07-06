@@ -10,6 +10,11 @@
                     </li>
                 </ul>
             </div>
+            <span class="btn-floating btn-large halfway-fab pink">
+                <router-link :to="{name:'EditSmoothie',params:{smoothie_slug:smoothie.slug}}">
+                    <i class="material-icons edit">edit</i>
+                </router-link>
+            </span>
         </div>
   </div>
 </template>
@@ -31,15 +36,17 @@ computed:{
           "deleteSmoothie"
       ])
   },
-  created(){
-      db.collection("smoothies").get()
-            .then(snapshot=>{
-                snapshot.forEach(doc =>{
-                    let smoothie =doc.data()
-                    smoothie.id=doc.id
-                    this.$store.state.smoothies.push(smoothie)
+  mounted: function (){
+        this.$store.state.smoothies=[]
+        db.collection("smoothies").get()
+                .then(snapshot=>{
+                    snapshot.forEach(doc =>{
+                        let smoothie =doc.data()
+                        smoothie.id=doc.id
+                        this.$store.state.smoothies.push(smoothie)
+                })
             })
-        })
+
   }
 }
 </script>
